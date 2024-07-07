@@ -8,9 +8,22 @@
 
 ⬜️ Release training code for Exact Selective-Matching
 
-## _About_ Enhancing Stability in Training Conditional Generative Adversarial Networks via Selective Data Matching
+## **About** Enhancing Stability in Training Conditional Generative Adversarial Networks via Selective Data Matching
 
-Conditional generative adversarial networks (cGANs) have demonstrated remarkable success due to their class-wise controllability and superior quality for complex generation tasks. Typical cGANs solve the joint distribution matching problem by decomposing two easier sub-problems: marginal matching and conditional matching. From our toy experiments, we found that it is the best to apply only conditional matching to certain samples due to the content-aware optimization of the discriminator. This paper proposes a simple (a few lines of code) but effective training methodology, selective focusing learning, which enforces the discriminator and generator to learn easy samples of each class rapidly while maintaining diversity. Our key idea is to selectively apply conditional and joint matching for the data in each mini-batch. We conducted experiments on recent cGAN variants in ImageNet (64x64 and 128x128), CIFAR-10, and CIFAR-100 datasets, and improved the performance significantly (up to 35.18% in terms of FID) without sacrificing diversity.
+Conditional generative adversarial networks (cGANs) have demonstrated remarkable success
+due to their class-wise controllability and superior quality for complex generation tasks. Typical cGANs
+solve the joint distribution matching problem by decomposing two easier sub-problems: marginal matching
+and conditional matching. In this paper, we proposes a simple but effective training methodology, selective
+focusing learning, which enforces the discriminator and generator to learn easy samples of each class rapidly
+while maintaining diversity. Our key idea is to selectively apply conditional and joint matching for the data
+in each mini-batch. Specifically, we first select the samples with the highest scores when sorted using the
+conditional term of the discriminator outputs (real and generated samples). Then we optimize the model
+using the selected samples with only conditional matching and the other samples with joint matching. From
+our toy experiments, we found that it is the best to apply only conditional matching to certain samples due to
+the content-aware optimization of the discriminator. We conducted experiments on ImageNet (64 × 64 and
+128 × 128), CIFAR-10, CIFAR-100 datasets, and Mixture of Gaussian, noisy label settings to demonstrate
+that the proposed method can substantially (up to 35.18% in terms of FID) improve all indicators with 10
+independent trials.
 
 ## Requirements
 
